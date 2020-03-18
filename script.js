@@ -15,7 +15,11 @@ let speed =  2;
 let gravity = 180;
 let level = 1;
 let girl = new Image();
+const gameOver = new Image();
+const newGame = new Image();
 
+newGame.src =  "images/ng1.png";
+gameOver.src = "images/gameOver2.png";
 bg.src = "images/bg3.png";
 platter.src  =  "images/plates.png";
 bottle.src = "images/bottle2.png";
@@ -87,16 +91,30 @@ function getRandomInt(max) {
         }
 }
 
+
 function draw() {
+
     ctx.drawImage(bg,0,0);
     ctx.drawImage(platter, pXp, pyp);
+    printCtx.drawImage(bgScore,0,580);
 
+    printCtx.drawImage(girl, 0, 30)
+
+    if (life <= 0) {
+            ctx.drawImage(gameOver,0,0);
+
+            let newGameButton = printCtx.drawImage(newGame, 200, 600);
+            newGameButton.onclick = reloade()
+            function reloade() {
+                location.reload()
+            }
+        } else {
 
     for(let i = 0; i< bottles.length; i++){
 
         ctx.drawImage(bottle, bottles[i].x, bottles[i].y);
 
-        bottles[i].y +=speed ;
+        bottles[i].y +=speed;
         if(bottles[i].y == gravity) {
             bottles.push( {
                 x: getRandomInt(450) ,
@@ -117,13 +135,9 @@ function draw() {
 
         }
 
-    }
+    }}
 
-
-
-    printCtx.drawImage(bgScore,0,580);
-    printCtx.drawImage(girl, 0, 30)
-     printCtx.fillStyle = "#FFFCED";
+    printCtx.fillStyle = "#FFFCED";
     printCtx.font = "20px Verdana";
     printCtx.fillText("Level : "+level,200,gameCvs.height - 60, );
 
@@ -134,7 +148,11 @@ function draw() {
     printCtx.fillStyle = "##FFFCED";
     printCtx.font = "20px serif";
     printCtx.fillText("Life : "+life,200,gameCvs.height - 40);
+
     requestAnimationFrame(draw);
 }
+
+
+
 
 draw();
