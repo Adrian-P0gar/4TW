@@ -17,7 +17,11 @@ let level = 1;
 let girl = new Image();
 const gameOver = new Image();
 const newGame = new Image();
+let left = 39;
+let right = 37;
+const win = new Image();
 
+win.src = "images/win2.png";
 newGame.src =  "images/ng1.png";
 gameOver.src = "images/gameOver2.png";
 bg.src = "images/bg3.png";
@@ -30,13 +34,13 @@ ctx.rect(pXp, pyp, 50, 50);
 ctx.stroke();
 
 function move(e) {
-    if (e.keyCode == 39){
+    if (e.keyCode == left){
         pXp += 45;
         if(pXp > 400) {
            pXp = 399;
          }
     }
-    if (e.keyCode == 37){
+    if (e.keyCode == right){
         pXp -= 45;
         if(pXp < 0) {
             pXp = 1;
@@ -60,6 +64,7 @@ function getRandomInt(max) {
 
  function changeLevel(){
         if (score == 20){
+
             level = 2;
             speed = 2;
             gravity = 150;
@@ -72,12 +77,16 @@ function getRandomInt(max) {
              girl.src= "images/girl/3.1.png"
         }
         if (score == 60){
+            left = 37;
+            right = 39;
             level = 4;
             speed =  2;
             gravity = 100;
              girl.src= "images/girl/4.1.png"
         }
         if (score == 80){
+            left = 39;
+            right = 37;
             level = 5;
             speed =  2;
             gravity = 80;
@@ -88,6 +97,7 @@ function getRandomInt(max) {
             speed =  2;
             gravity = 60;
             girl.src= "images/girl/6.1.png"
+
         }
 }
 
@@ -103,12 +113,14 @@ function draw() {
     if (life <= 0) {
             ctx.drawImage(gameOver,0,0);
 
-            let newGameButton = printCtx.drawImage(newGame, 200, 600);
-            newGameButton.onclick = reloade()
-            function reloade() {
-                location.reload()
-            }
-        } else {
+//             let newGameButton = printCtx.drawImage(newGame, 200, 600);
+//             newGameButton.addEventListener('click', function(event) {
+//     location.reload();
+// });
+        } else if (level == 6){
+        ctx.drawImage(win,0,0);
+    }
+        else {
 
     for(let i = 0; i< bottles.length; i++){
 
