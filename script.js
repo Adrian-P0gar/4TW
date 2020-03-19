@@ -2,6 +2,8 @@ const gameCvs = document.getElementById('game');
 const  ctx = gameCvs.getContext("2d");
 const printCvs = document.getElementById("pictureCanvas");
 const printCtx = printCvs.getContext('2d');
+const newGameCvs = document.getElementById("newGame");
+const printNewGame = newGameCvs.getContext("2d");
 let pXp = 200;
 const pyp = 650;
 
@@ -29,6 +31,7 @@ platter.src  =  "images/plates.png";
 bottle.src = "images/bottle2.png";
 bgScore.src = "images/bgScore.png";
 girl.src= "images/girl/1.1.png";
+newGame.style.cursor = "pointer";
 
 ctx.rect(pXp, pyp, 50, 50);
 ctx.stroke();
@@ -112,11 +115,11 @@ function draw() {
 
     if (life <= 0) {
             ctx.drawImage(gameOver,0,0);
-
-//             let newGameButton = printCtx.drawImage(newGame, 200, 600);
-//             newGameButton.addEventListener('click', function(event) {
-//     location.reload();
-// });
+            printNewGame.drawImage(newGame,0,0);
+            newGameCvs.style.cursor = "pointer";
+            newGameCvs.onmousedown = function (e) {
+                document.location.reload();
+            }
         } else if (level == 6){
         ctx.drawImage(win,0,0);
     }

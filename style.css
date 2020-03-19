@@ -1,0 +1,9 @@
+#pictureCanvas {
+  position: relative;
+}
+
+#newGame {
+  position: absolute;
+  top: 666px;
+  left: 706px;
+}
