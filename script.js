@@ -67,21 +67,25 @@ function getRandomInt(max) {
 
  function changeLevel(){
         if (score == 20){
-
+            left = 37;
+            right = 39;
             level = 2;
             speed = 2;
             gravity = 150;
             girl.src= "images/girl/2.1.png"
         }
         if (score == 40){
+            left = 38;
+            right = 40;
             level = 3;
             speed =  2;
             gravity = 130;
              girl.src= "images/girl/3.1.png"
+
         }
         if (score == 60){
-            left = 37;
-            right = 39;
+            left = 40;
+            right = 38;
             level = 4;
             speed =  2;
             gravity = 100;
@@ -122,6 +126,10 @@ function draw() {
             }
         } else if (level == 6){
         ctx.drawImage(win,0,0);
+        printNewGame.drawImage(newGame,0,0);
+        newGameCvs.style.cursor = "pointer";
+        newGameCvs.onmousedown = function (e) {
+            document.location.reload();}
     }
         else {
 
